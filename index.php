@@ -619,12 +619,12 @@
 					<div class="col-md-4 col-sm-4">
 						<div class="form-group">
 							<label for="name" class="sr-only">Seu nome</label>
-							<input type="name" class="form-control" id="name" name="name" placeholder="Seu nome">
+							<input type="name" class="form-control" id="name" name="name" placeholder="Seu nome" required maxlength="100">
 						</div>
 					</div>
 					<div class="col-md-4 col-sm-4">
 						<div class="form-group">
-							<textarea name="message" class="form-control" id="exampleFormControlTextarea1" rows="2" placeholder="Mensagem..."></textarea>
+							<textarea name="message" class="form-control" id="message" rows="2" placeholder="Mensagem..." required maxlength="100"></textarea>
 						</div>
 					</div>
 					<div class="col-md-4 col-sm-4">
