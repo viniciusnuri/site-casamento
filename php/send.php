@@ -12,5 +12,5 @@ if($_POST){
     $db = new DB;
     $db->insert("INSERT INTO depositions (name, message) VALUES (?, ?)", [$name, $message]);
     set_flash("success", "Agradecemos pelo o seu carinho!", "success");
-    redirect('/site-casamento/#depoimentos');
+    redirect('/#depoimentos');
 }
