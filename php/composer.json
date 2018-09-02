@@ -1,0 +1,17 @@
+{
+    "name": "evandojunior/php",
+    "description": "Functions to site",
+    "authors": [
+        {
+            "name": "Evando Junior",
+            "email": "evando.junior@live.com"
+        }
+    ],
+    "require": {},
+    "autoload": {
+        "files" : [
+            "./config/db.php",
+            "./config/functions.php"
+        ]
+    }
+}

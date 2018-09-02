@@ -1,3 +1,4 @@
+<?php require_once 'php/send.php' ?>
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
@@ -600,8 +601,9 @@
 		</div>
 	</section>
 
+<section id="depoimentos">
 <!-- QUADRO DE RECADOS -->
-<div id="galeria" class="fh5co-section-gray" style="background-image:url(images/gallery/img12.jpg;">
+<div id="" class="fh5co-section-gray" style="background-image:url(images/gallery/img12.jpg;">
 	<div class="overlay"></div>
 	<div class="container">
 		<div class="row animate-box fadeInUp animated-fast">
@@ -611,17 +613,18 @@
 			</div>
 		</div>
 		<div class="row animate-box fadeInUp animated-fast">
+			<?= get_flash("success")?>
 			<div class="col-md-10 col-md-offset-1">
-				<form class="form-inline">
+				<form class="form-inline" method="POST" action="php/send.php">
 					<div class="col-md-4 col-sm-4">
 						<div class="form-group">
 							<label for="name" class="sr-only">Seu nome</label>
-							<input type="name" class="form-control" id="name" placeholder="Seu nome">
+							<input type="name" class="form-control" id="name" name="name" placeholder="Seu nome">
 						</div>
 					</div>
 					<div class="col-md-4 col-sm-4">
 						<div class="form-group">
-							<textarea class="form-control" id="exampleFormControlTextarea1" rows="2" placeholder="Mensagem..."></textarea>
+							<textarea name="message" class="form-control" id="exampleFormControlTextarea1" rows="2" placeholder="Mensagem..."></textarea>
 						</div>
 					</div>
 					<div class="col-md-4 col-sm-4">
@@ -631,40 +634,24 @@
 			</div>
 		</div>
 					<div>
+						<?php if($results = getDepositions()):?>
 						<div class="jumbotron jumbotron-fluid">
 							<div class="container">
 								<div class="row">
+							<?php foreach($results as $result):?>
 									<div class="col-md-4 offset-8">
-											<h2 class="display-t">$nome</h2>
-											<p class="lead">$recado</p>
+											<h2 class="display-t"><?=$result['name']?></h2>
+											<p class="lead"><?=$result['message']?></p>
 									</div>
-									<div class="col-md-4 offset-8">
-											<h2 class="display-t">$nome</h2>
-											<p class="lead">$recado</p>
-									</div>
-									<div class="col-md-4 offset-8">
-											<h2 class="display-t">$nome</h2>
-											<p class="lead">$recado</p>
-									</div>
-									<div class="col-md-4 offset-8">
-											<h2 class="display-t">$nome</h2>
-											<p class="lead">$recado</p>
-									</div>
-									<div class="col-md-4 offset-8">
-											<h2 class="display-t">$nome</h2>
-											<p class="lead">$recado</p>
-									</div>
-									<div class="col-md-4 offset-8">
-											<h2 class="display-t">$nome</h2>
-											<p class="lead">$recado</p>
-									</div>
+									<?php endforeach?>
 								</div>
 							</div>
 						</div>
+						<?php endif?>
 					</div>
 	</div>
 </div>
-
+</section>
 	<section id="informacoes" class="fh5co-bg" style="background-image:url(images/img_bg_5.jpg)">
 		<div class="overlay"></div>
 			<div class="container">

@@ -2,19 +2,19 @@
 
 class DB extends PDO
 {
-    private $host = 'localhost';
-    private $user = 'root';
-    private $pass = '';
-    private $dbname = 'site-casamento';
+    private $hostname = 'kahenuri.com.br';
+    private $username = 'vinicius_db_user';
+    private $password = 'd9wtg3oueym4';
+    private $dbname = 'vinicius_db_casamento';
+    private $connection;
 
     #make a connection
     public function __construct()
     {
-        parent::__construct($hostname,$dbname,$username,$password);
-
         try 
         { 
-            $this->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION); 
+            $this->connection = new PDO("mysql:host={$this->hostname};dbname={$this->dbname}", $this->username, $this->password);
+            $this->connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION); 
         }
         catch (PDOException $e) 
         {
@@ -26,7 +26,7 @@ class DB extends PDO
     public function num_rows($query)
     {
         # create a prepared statement
-        $stmt = parent::prepare($query);
+        $stmt = $this->connection->prepare($query);
 
         if($stmt) 
         {
@@ -34,6 +34,39 @@ class DB extends PDO
             $stmt->execute();
 
             return $stmt->rowCount();
+        } 
+        else
+        {
+            return self::get_error();
+        }
+    }
+    public function getAll($query)
+    {
+        # create a prepared statement
+        $stmt = $this->connection->prepare($query);
+
+        if($stmt) 
+        {
+            # execute query 
+            $stmt->execute();
+
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        } 
+        else
+        {
+            return self::get_error();
+        }
+    }
+
+    public function insert($query, $params = [])
+    {
+        # create a prepared statement
+        $stmt = $this->connection->prepare($query);
+
+        if($stmt) 
+        {
+            # execute query 
+            return $stmt->execute($params);
         } 
         else
         {
